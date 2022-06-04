@@ -14,6 +14,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     log: true,
   });
 
+  console.log("deployer address::::::::", deployer);
   const yourToken = await ethers.getContract("YourToken", deployer);
 
   // Todo: transfer tokens to frontend address
