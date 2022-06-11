@@ -5,7 +5,6 @@ import React, { useCallback, useState } from "react";
 import QrReader from "react-qr-reader";
 import Blockie from "./Blockie";
 
-
 // probably we need to change value={toAddress} to address={toAddress}
 
 /*
@@ -53,8 +52,7 @@ export default function AddressInput(props) {
   const updateAddress = useCallback(
     async newValue => {
       if (typeof newValue !== "undefined") {
-
-        console.log("SCAN",newValue)
+        console.log("SCAN", newValue);
 
         /*console.log("🔑 Incoming Private Key...");
         rawPK = incomingPK;
@@ -65,9 +63,9 @@ export default function AddressInput(props) {
           window.localStorage.setItem("metaPrivateKey_backup" + Date.now(), currentPrivateKey);
         }
         window.localStorage.setItem("metaPrivateKey", rawPK);*/
-        if(newValue && newValue.indexOf && newValue.indexOf("wc:")===0){
-          props.walletConnect(newValue)
-        }else{
+        if (newValue && newValue.indexOf && newValue.indexOf("wc:") === 0) {
+          props.walletConnect(newValue);
+        } else {
           let address = newValue;
           setValue(address);
           if (address.indexOf(".eth") > 0 || address.indexOf(".xyz") > 0) {
@@ -118,40 +116,40 @@ export default function AddressInput(props) {
         }}
         onScan={newValue => {
           if (newValue) {
-            console.log("SCAN VALUE",newValue);
+            console.log("SCAN VALUE", newValue);
 
-            if(newValue && newValue.length==66 && newValue.indexOf("0x")===0){
-              console.log("This might be a PK...",newValue)
-              setTimeout(()=>{
-                console.log("opening...")
+            if (newValue && newValue.length == 66 && newValue.indexOf("0x") === 0) {
+              console.log("This might be a PK...", newValue);
+              setTimeout(() => {
+                console.log("opening...");
                 let a = document.createElement("a");
                 document.body.appendChild(a);
                 a.style = "display: none";
                 //a.href = "https://punkwallet.io/pk#"+newValue;
                 a.click();
                 document.body.removeChild(a);
-              },250)
+              }, 250);
               setScan(false);
               updateAddress();
-            }else if(newValue && newValue.indexOf && newValue.indexOf("http")===0){
-              console.log("this is a link, following...")
-              setTimeout(()=>{
-                console.log("opening...")
+            } else if (newValue && newValue.indexOf && newValue.indexOf("http") === 0) {
+              console.log("this is a link, following...");
+              setTimeout(() => {
+                console.log("opening...");
                 let a = document.createElement("a");
                 document.body.appendChild(a);
                 a.style = "display: none";
                 a.href = newValue;
                 a.click();
                 document.body.removeChild(a);
-              },250)
+              }, 250);
 
               setScan(false);
               updateAddress();
-            }else{
+            } else {
               let possibleNewValue = newValue;
               possibleNewValue = possibleNewValue.replace("ethereum:", "");
               possibleNewValue = possibleNewValue.replace("eth:", "");
-              console.log("possibleNewValue",possibleNewValue)
+              console.log("possibleNewValue", possibleNewValue);
               if (possibleNewValue.indexOf("/") >= 0) {
                 possibleNewValue = possibleNewValue.substr(possibleNewValue.lastIndexOf("0x"));
                 console.log("CLEANED VALUE", possibleNewValue);
@@ -159,7 +157,6 @@ export default function AddressInput(props) {
               setScan(false);
               updateAddress(possibleNewValue);
             }
-
           }
         }}
         style={{ width: "100%" }}
@@ -174,9 +171,9 @@ export default function AddressInput(props) {
   const x = parseInt(part1, 16) % 100;
   const y = parseInt(part2, 16) % 100;
 
-  props.hoistScanner(() => {
-    setScan(!scan);
-  });
+  // props.hoistScanner(() => {
+  //   setScan(!scan);
+  // });
 
   return (
     <div>

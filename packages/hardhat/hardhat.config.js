@@ -26,7 +26,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+const defaultNetwork = "ropsten";
 
 const mainnetGwei = 21;
 
@@ -128,10 +128,10 @@ module.exports = {
       },
     },
     ropsten: {
-      url: "https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://eth-ropsten.alchemyapi.io/v2/FoJ7fEaqpzLdLbQGkDfZMLzEbiapUXjP", // <---- YOUR INFURA ID! (or it won't work)
 
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/ropsten",// <---- YOUR MORALIS ID! (not limited to infura)
-
+      gasPrice: mainnetGwei * 1000000000,
       accounts: {
         mnemonic: mnemonic(),
       },
@@ -159,9 +159,9 @@ module.exports = {
         mnemonic: mnemonic(),
       },
     },
-    polytest: {
-      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/polygon/mumbai", // <---- YOUR MORALIS ID! (not limited to infura)
-      gasPrice: 1000000000,
+    mumbai: {
+      url: "https://polygon-mumbai.g.alchemy.com/v2/xRHpCO8trBhhIEf_S6gHVzPNKcoNb7VN", // <---- YOUR MORALIS ID! (not limited to infura)
+      // gasPrice: 50000000000,
       accounts: {
         mnemonic: mnemonic(),
       },
@@ -308,7 +308,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: "PSW8C433Q667DVEX5BCRMGNAH9FSGFZ7Q8",
+    apiKey: "R43DM1ZPACF5IVYG7D9N4NRF78T51PAEGV",
   },
 };
 
